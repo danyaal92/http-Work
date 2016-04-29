@@ -65,13 +65,14 @@ void http_connect(int ecg, int bpm){
     char ecg_str = (char)ecg; char bpm_str = (char)bpm;
 	//printf("data -> %c", ecg_str);
     
-	char src[10]; char src2[10]; char src_temp[2];
-	char buf[10];
-	snprintf(buf, 10, "%d", ecg);
+		char src_ecg[20]; char src_bpm[20]; /*char src_temp[2];*/
+	char buf_1[20], buf_2[20];
+	snprintf(buf_1, 20, "%d", ecg); snprintf(buf_2, 20, "%d", bpm);
 	//src_temp[0] = ecg_str;
 	//strcpy(src, ecg_str);
-	strcpy(src2, "ecg=");
-	/*char postst_1 =*/ strcat(src2, buf);
+	strcpy(src_ecg, "ecg = "); strcpy(src_bpm, "& bpm = ");
+	strcat(src_ecg, buf_1);  strcat(src_bpm, buf_2);
+	strcat(src_ecg, src_bpm);
     /*char *postst_2 = strcat("&bpm=", bpm_str);
     char *postst_3 = strcat("&password=", "test");
     
@@ -107,7 +108,7 @@ void http_connect(int ecg, int bpm){
 	inet_pton(AF_INET, str, &servaddr.sin_addr);
 
 	connect(sockfd, (SA *) & servaddr, sizeof(servaddr));
-	process_http(sockfd, hname, page, src2);
+	process_http(sockfd, hname, page, src_ecg);
 	close(sockfd);
 	
     
