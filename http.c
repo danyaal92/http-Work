@@ -70,9 +70,10 @@ void http_connect(int ecg, int bpm){
 	snprintf(buf_1, 20, "%d", ecg); snprintf(buf_2, 20, "%d", bpm);
 	//src_temp[0] = ecg_str;
 	//strcpy(src, ecg_str);
-	strcpy(src_ecg, "ecg = "); strcpy(src_bpm, "& bpm = ");
+	strcpy(src_ecg, "ecg="); strcpy(src_bpm, "&bpm=");
 	strcat(src_ecg, buf_1);  strcat(src_bpm, buf_2);
 	strcat(src_ecg, src_bpm);
+	strcat(src_ecg, "&password=test");
     /*char *postst_2 = strcat("&bpm=", bpm_str);
     char *postst_3 = strcat("&password=", "test");
     
